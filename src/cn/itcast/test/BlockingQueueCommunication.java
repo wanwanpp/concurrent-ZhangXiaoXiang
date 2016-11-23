@@ -3,9 +3,16 @@ package cn.itcast.test;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+
+/**
+ * 本程序效果，按first，second，third的顺序一次打印，每组first打印2次，second打印5次，third打印10次
+ * 每组必须打印完整，不能存在中间被打断的情况。
+ */
 public class BlockingQueueCommunication {
 
     public static void main(String[] args) {
+
+
 
         final Business business = new Business();
 
@@ -34,6 +41,11 @@ public class BlockingQueueCommunication {
     }
 
     static class Business {
+
+        /**
+         * 使用阻塞队列在这里起到锁的作用
+         * 阻塞队列的长度应该为 1.
+         */
         BlockingQueue<Integer> queue1 = new ArrayBlockingQueue<Integer>(1);
         BlockingQueue<Integer> queue2 = new ArrayBlockingQueue<Integer>(1);
         BlockingQueue<Integer> queue3 = new ArrayBlockingQueue<Integer>(1);
