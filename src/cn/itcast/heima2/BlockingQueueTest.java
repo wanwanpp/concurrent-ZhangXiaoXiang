@@ -1,6 +1,8 @@
 package cn.itcast.heima2;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+
 public class BlockingQueueTest {
     public static void main(String[] args) {
         final BlockingQueue queue = new ArrayBlockingQueue(3);
@@ -21,12 +23,13 @@ public class BlockingQueueTest {
                 }
             }.start();
         }
+
         new Thread() {
             public void run() {
                 while (true) {
                     try {
                         //将此处的睡眠时间分别改为100和1000，观察运行结果
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                         System.out.println(Thread.currentThread().getName() + "准备取数据!");
                         queue.take();
                         System.out.println(Thread.currentThread().getName() + "已经取走数据，" +
