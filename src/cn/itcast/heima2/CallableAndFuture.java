@@ -4,7 +4,6 @@ import java.util.concurrent.*;
 public class CallableAndFuture {
     public static void main(String[] args) {
         ExecutorService threadPool = Executors.newSingleThreadExecutor();
-//        ThreadFactory
         Future<String> future =
                 threadPool.submit(
                         new Callable<String>() {
@@ -22,9 +21,9 @@ public class CallableAndFuture {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ExecutorService threadPool2 = Executors.newFixedThreadPool(10);
+        ExecutorService threadPool2 = Executors.newFixedThreadPool(1);
         CompletionService<Integer> completionService = new ExecutorCompletionService<Integer>(threadPool2);
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 11; i++) {
             final int seq = i;
             completionService.submit(new Callable<Integer>() {
                 @Override
@@ -34,7 +33,7 @@ public class CallableAndFuture {
                 }
             });
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 11; i++) {
             try {
                 System.out.println(
                         completionService.take().get());
